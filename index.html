@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AngularJS Routing example</title>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style> 
+#div1{
+    width: 800px;
+    height: 500px;
+    float: right;
+    box-shadow: 5px 0px 5px 5px #888888;
+	  margin:0 auto;
+    text-align:center;
+}
+#table1 {
+    table-layout: auto;
+	
+}
+#div2{
+
+width:300px;
+background-color:#FFFED8;
+
+}
+a {
+    color: green;
+}
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 50%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+.table-remove {
+  color: red;
+  cursor: pointer;
+  
+  &:hover {
+    color:gray;
+  }
+}
+
+h1 {
+    text-align: center; 
+	color: white; 
+}
+h1 span { 
+    background-color: #8BDA63  ; 
+}
+
+</style>
+  </head>
+
+  <body ng-app="sampleApp" ng-controller="ShowOrderController">
+
+    
+	
+	
+	<h1><span>DECISION MAKING FOR PRIMARY HEALTH CARE</span></h1>
+	</br>
+	</br>
+	<div style="margin:0 auto;" id="div1">
+      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for diagnosis..">
+	      <button type="button" class="btn btn-primary" ng-click="addNew(personalDetails)">ADD </button>
+	  <table class="table" id="myTable" >
+  <thead>
+    <tr>
+      <th width="200">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    Diagnosis</th>
+	  
+    </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="personalDetail in personalDetails">
+                                       
+                                         <!--  + '://' + $scope.urlParts.domain -->
+				                          
+                                        <td contenteditable="true">
+                                         {{personalDetail.fname}}</td>
+                                        <td>
+                                           <a href="#ShowOrder/{{personalDetails}}" >show details</a></td>
+                                       <td>
+                                      <span class="table-remove glyphicon glyphicon-remove" data-ng-click="removeRow($index)"></span>
+                                        </td>
+										
+                                    </tr>
+  </tbody>
+</table>    
+<!--
+ <tr ng-repeat="personalDetail in personalDetails">
+                                        <td>
+                                            <input type="checkbox" ng-model="personalDetail.selected"/></td>
+                                        <td>
+                                            <input type="text" class="form-control" ng-model="personalDetail.fname" required/></td>
+                                        <td>
+                                            <input type="text" class="form-control" ng-model="personalDetail.lname" required/></td>
+                                        <td>
+                                            <input type="email" class="form-control" ng-model="personalDetail.email" required/></td>
+                                    </tr>-->
+	  <!--
+		<table class="table" id="myTable" >
+			  <a href="#" class="button" ng-click="addRow()">Add Row {{counter}}</a>
+			  <tr class="success">
+				<td><b> Diagnosis</b></td><td><b>Detail</b></td>
+			  </tr>
+			
+			<tbody>
+			  <tr ng-repeat="rowContent in rows">
+      <td>{{rowContent}}</td>
+    </tr><!--
+			  <tr class="active">
+				<td>Fever</td>
+				<td><a href="#ShowOrder/1234" >show details</a></td>
+			  </tr>
+			  <tr>
+				<td>Anameia</td>
+				<td><a href="#ShowOrder/5412" >show details</a></td>
+			  </tr>
+			  <tr>
+				<td>Dengue</td>
+				<td><a href="#ShowOrder/9874" >show details</a></td>
+			  </tr>
+			</tbody>
+		  </table>
+		  -->
+</div>
+		<div id="div2" ng-view></div>
+	<script>
+	
+	 function closee(){
+  $(this).parent('tr').detach();
+};
+	
+	
+function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+	
+  
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+<script src="app.js"></script>
+
+  </body>
+</html>
